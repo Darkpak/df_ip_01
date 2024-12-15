@@ -1,0 +1,34 @@
+﻿title: Start
+---
+
+
+<<declare $quest =  "unassigned">>
+
+===
+
+title: Mysterious_Man
+---
+<<if $quest == "unassigned">>
+    Mysterious Man: You are not the first to find yourself here. This place holds secrets—<b>five relics</b> scattered across the village will guide you to freedom.
+    Mysterious Man: I would suggest you to start your search at the Abandoned House <b>without door</b> south-east of you. And don't forget, if you get lost you can always come to me and I will help you. 
+    <<set $quest to "in progress">>
+<<elseif $quest == "in progress">>
+    <<if not has_item("Player", "Relic_C")>>
+        Mysterious Man: Did you take a look in the church?
+    <<elseif not has_item("Player", "Relic_H")>>
+        Mysterious Man: Have you checked the houses yet?
+    <<elseif not has_item("Player", "Relic_G")>>
+        Mysterious Man: Have you checked the cemetery yet?    
+    <<elseif not has_item("Player", "Relic_M")>>
+        Mysterious Man: Have you checked the mansion yet?
+    <<elseif not has_item("Player", "Relic_B")>>
+        Mysterious Man: Have you checked the house without a door yet?
+    <<elseif has_item("Player", "Relic_C") && has_item("Player", "Relic_H") && has_item("Player", "Relic_G") && has_item("Player", "Relic_M") && has_item("Player", "Relic_B")>>
+        Mysterious Man: You have collected all the relics! You are free to leave the village.
+        <<set $quest to "complete">>
+    <<endif>>
+<<elseif $quest == "complete">>
+    Mysterious Man: It's been great doin' bussiness with you!
+<<endif>>
+
+===
